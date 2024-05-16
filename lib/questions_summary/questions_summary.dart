@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '/questions_summary/summary_item.dart';
+import 'package:provider/provider.dart';
+import 'summary_item.dart';
+import '../core_state.dart';
 
 class QuestionsSummary extends StatelessWidget {
-  const QuestionsSummary(this.summaryData, {super.key});
-
-  final List<Map<String, Object>> summaryData;
+  const QuestionsSummary({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class QuestionsSummary extends StatelessWidget {
       height: 400,
       child: SingleChildScrollView(
         child: Column(
-          children: summaryData.map(
+          children: context.read<CoreState>().summaryData.map(
             (data) {
               return SummaryItem(data);
             },
