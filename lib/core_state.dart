@@ -3,13 +3,14 @@ import 'data/questions.dart';
 
 class CoreState extends ChangeNotifier {
   final List<String> _selectedAnswers = [];
-  var currentQuestionIndex = 0;
+  var _currentQuestionIndex = 0;
 
   List<String> get selectedAnswers => _selectedAnswers;
+  int get currentQuestionIndex => _currentQuestionIndex;
 
   void chooseAnswer(BuildContext context, String answer) {
     _selectedAnswers.add(answer);
-    currentQuestionIndex++;
+    _currentQuestionIndex++;
 
     if (_selectedAnswers.length == questions.length) {
       Navigator.of(context).pushReplacementNamed('/result');
@@ -20,7 +21,7 @@ class CoreState extends ChangeNotifier {
 
   void restartQuiz(BuildContext context) {
     _selectedAnswers.clear();
-    currentQuestionIndex = 0;
+    _currentQuestionIndex = 0;
     Navigator.of(context).pushReplacementNamed('/quiz');
   }
 
